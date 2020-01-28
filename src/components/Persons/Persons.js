@@ -47,6 +47,12 @@ class Persons extends PureComponent {
   render() {
     console.log('[Persons.js] rendering...');
     return this.props.persons.map((person, index) => {
+
+      // console.log('[Persons.js] person...id > '+ person.id);
+      // console.log('[Persons.js] person...name > '+ person.name);
+      // console.log('[Persons.js] person...age > '+ person.age);
+
+
       return (
         <Person
           click={() => this.props.clicked(index)}
@@ -59,5 +65,8 @@ class Persons extends PureComponent {
     });
   }
 }
+
+
+
 
 export default Persons;

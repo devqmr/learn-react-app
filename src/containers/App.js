@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import classes from './App.module.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import WithClass from '../hoc/WithClass';
+import WithClass from '../hoc/withClass';
+import Aux from "../hoc/Aux";
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class App extends Component {
 
   state = {
     persons: [
-      { id: 'asfa1', name: 'Max', age: 28 },
+      { id: 'asfa1', name: "Max", age: 28 },
       { id: 'vasdf1', name: 'Manu', age: 29 },
       { id: 'asdf11', name: 'Stephanie', age: 26 }
     ],
@@ -79,6 +80,9 @@ class App extends Component {
     console.log('[App.js] render');
     let persons = null;
 
+    console.log('[App.js] showPersons > ' + this.state.showPersons);
+    console.log('[App.js] this.state.persons > ' + this.state.persons);
+
     if (this.state.showPersons) {
       persons = (
         <Persons
@@ -90,7 +94,7 @@ class App extends Component {
     }
 
     return (
-      <WithClass classes={classes.App}>
+      <Aux>
         <button
           onClick={() => {
             this.setState({ showCockpit: false });
@@ -107,10 +111,10 @@ class App extends Component {
           />
         ) : null}
         {persons}
-      </WithClass>
+      </Aux>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
 }
 
-export default App;
+export default WithClass(App,classes.App) ;
